@@ -184,9 +184,9 @@ body.no-band .progress{border-radius:0;}
 .success-sub{font-size:11px;color:var(--muted);text-align:center;line-height:1.9;margin-bottom:14px;}
 .gen-notice{background:rgba(211,200,222,0.35);border:0.5px solid var(--border);border-radius:10px;padding:10px 14px;font-size:10px;color:var(--muted);line-height:1.9;}
 .gen-notice b{color:var(--dark);}
-.copy-box{background:rgba(211,200,222,0.3);border:0.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px;}
+.copy-box{background:var(--card);border:0.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px;}
 .copy-box-title{font-size:11px;font-weight:500;color:var(--dark);margin-bottom:8px;}
-.copy-box-txt{white-space:pre-line;font-size:10px;color:var(--dark);background:var(--card);border:0.5px solid var(--border);border-radius:8px;padding:10px;line-height:1.8;max-height:220px;overflow:auto;}
+.copy-box-txt{white-space:pre-line;font-size:10px;color:var(--dark);background:rgba(211,200,222,0.3);border:0.5px solid var(--border);border-radius:8px;padding:10px;line-height:1.8;word-break:break-word;}
 .copy-hint{text-align:center;font-size:10px;color:var(--gold);margin-top:6px;display:none;}
 .foot{text-align:center;font-size:10px;color:var(--muted);line-height:1.9;margin:26px 16px 0;}
 .foot b{color:var(--gold);font-weight:500;}
@@ -344,6 +344,9 @@ body.no-band .progress{border-radius:0;}
     <div class="form-field"><label>工作性質・行業</label><input type="text" id="f-job" placeholder="選填，例：業務、科技業" oninput="validate()"/></div>
     <div class="form-field"><label>工作年資</label><input type="text" id="f-years" placeholder="選填，例：3 年" oninput="validate()"/></div>
 
+    <div class="form-section-title">💳 付款資訊</div>
+    <div class="form-field"><label>匯款帳號後五碼 <span class="req">*</span></label><input type="text" id="f-acc5" inputmode="numeric" maxlength="5" placeholder="請輸入你的匯款帳號後五碼" oninput="this.value=this.value.replace(/\D/g,'');validate()"/></div>
+
     <div class="form-section-title">📋 送出前請確認</div>
     <div class="notice-acc" id="notice-acc">
       <div class="notice-header" onclick="document.getElementById('notice-acc').classList.toggle('open')">
@@ -355,7 +358,7 @@ body.no-band .progress{border-radius:0;}
         <div class="notice-sec"><div class="notice-sec-title">🔮 占卜為能量與現況解析</div><div class="notice-sec-txt">提供方向與建議，結果非絕對，未來仍掌握在你手中</div></div>
         <div class="notice-sec"><div class="notice-sec-title">🔒 解析後不接受退款</div><div class="notice-sec-txt">占卜屬於客製化服務，有效後即開始為你解析</div></div>
         <div class="notice-sec"><div class="notice-sec-title">💛 請理性看待結果與建議</div><div class="notice-sec-txt">塔羅是指引，不是命定。你的選擇，決定你的未來</div></div>
-        <div class="notice-sec"><div class="notice-sec-title">🕐 確認問題後 24hr 內回覆</div><div class="notice-sec-txt">回覆時間 10:00–22:00，依下單順序回覆，請耐心等候</div></div>
+        <div class="notice-sec"><div class="notice-sec-title">🕐 確認問題後 48hr 內回覆</div><div class="notice-sec-txt">回覆時間 10:00–22:00，依下單順序回覆，請耐心等候</div></div>
         <div class="notice-sec"><div class="notice-sec-title">💬 解析後可補充追問一次</div><div class="notice-sec-txt">建議看完解析後思考整理，統一一次提出，問題品質更好 🔮</div></div>
       </div>
     </div>
@@ -393,7 +396,7 @@ body.no-band .progress{border-radius:0;}
       <div class="step-box-title">📋 傳送後請注意</div>
       <div class="step-item"><div class="step-num">🔮</div><div class="step-content"><div class="step-desc">訊息內已含付款資訊，完成付款後<b>記得告知 Airy</b></div></div></div>
       <div class="step-item"><div class="step-num">🃏</div><div class="step-content"><div class="step-desc">Airy 確認表單與款項後，會與你確認問題方向<br>若需補充，Airy 會透過 LINE 聯繫你</div></div></div>
-      <div class="step-item"><div class="step-num">🕐</div><div class="step-content"><div class="step-desc">確認完畢後開始抽牌，<b>24hr 內</b>回覆解析<br>回覆時間 10:00–22:00，依下單順序</div></div></div>
+      <div class="step-item"><div class="step-num">🕐</div><div class="step-content"><div class="step-desc">確認完畢後開始抽牌，<b>48hr 內</b>回覆解析<br>回覆時間 10:00–22:00，依下單順序</div></div></div>
       <div class="step-item"><div class="step-num">💬</div><div class="step-content"><div class="step-desc">解析後可補充追問一次<br>建議看完後思考整理，統一一次提出</div></div></div>
     </div>
     <button class="btn-outline" onclick="goPage(1)">← 回到首頁</button>
@@ -409,11 +412,11 @@ body.no-band .progress{border-radius:0;}
    【網站設定區】要改內容，先改這裡
    ============================================================ */
 const CONFIG = {
-  LINE_URL: '#',          // ← 換成你的 LINE 連結，例如 'https://lin.ee/xxxxxx'
+  LINE_URL: 'https://line.me/R/ti/p/@040cwlul',          // ← 換成你的 LINE 連結，例如 'https://lin.ee/xxxxxx'
   NOTICE_ON: false,        // 公告開關：true 顯示 / false 隱藏
   NOTICE_TITLE: '📢 Airy 外出公告',
   NOTICE_TEXT: '（請填入日期）Airy 有事外出<br>該期間收到的預約將於 48hr 內回覆<small>感謝理解 🙏</small>',
-  PAYMENT_INFO: '（請在此填入你的付款方式，例：銀行代碼／帳號）'
+  PAYMENT_INFO: '🏦 匯款：822 中國信託 761890034758'   // ← 付款方式，可多行用 \n 分隔
 };
 const PLANS = {
   a: { name: '單一指引', sub: '塔羅 3 張牌陣', price: '$188' },
@@ -471,14 +474,16 @@ function build(){
     if (v('f-years')) L.push('工作年資：' + v('f-years'));
   }
   L.push('━━━━━━━━━━━');
-  L.push('💳 付款資訊：' + CONFIG.PAYMENT_INFO);
-  L.push('');
-  L.push('請幫我占卜，謝謝 🙏');
+  L.push('💳 付款方式');
+  L.push(CONFIG.PAYMENT_INFO);
+  L.push('🔢 我的帳號後五碼：' + (v('f-acc5') || '—'));
+  L.push('━━━━━━━━━━━');
+  L.push('以上為我的資料，麻煩Airy幫我占卜 🙏');
   state.msg = L.join('\n');
   return state.msg;
 }
 function validate(){
-  const ok = v('f-name') && v('f-sign') && v('f-birth') && v('f-status') && v('f-story') && v('f-ask') && document.getElementById('f-agree').checked;
+  const ok = v('f-name') && v('f-sign') && v('f-birth') && v('f-status') && v('f-story') && v('f-ask') && v('f-acc5').length === 5 && document.getElementById('f-agree').checked;
   document.getElementById('btn-submit').disabled = !ok;
   const pv = document.getElementById('preview');
   if (v('f-name') || v('f-story') || v('f-ask')) { pv.style.display = 'block'; document.getElementById('preview-txt').textContent = build(); }
